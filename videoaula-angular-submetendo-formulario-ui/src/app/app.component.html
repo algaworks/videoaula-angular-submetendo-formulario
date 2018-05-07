@@ -1,0 +1,73 @@
+<header>
+  <nav class="navbar navbar-dark bg-primary navbar-expand-lg">
+      <div class="container">
+          <a class="navbar-brand" href="javascript:;" th:href="@{/}">Contatos</a>
+
+          <button class="navbar-toggler" type="button" data-toggle="collapse"
+              data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+              aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+      </div>
+  </nav>
+</header>
+
+<main role="main">
+  <section class="my-4">
+    <div class="container">
+        <h2>Cadastro de contatos</h2>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <form method="post" #frm="ngForm" (ngSubmit)="criar(frm)">
+        <div class="form-group">
+          <label for="nome">Nome</label>
+          <input type="text" id="nome" name="nome"
+            class="form-control" placeholder="Nome"
+            [(ngModel)]="contato.nome" required/>
+        </div>
+
+        <div class="form-group">
+          <label for="email">E-mail</label>
+          <input type="email" id="email" name="email"
+            class="form-control" placeholder="E-mail"
+            [(ngModel)]="contato.email" required email/>
+        </div>
+
+        <button type="submit" class="btn btn-primary"
+          [disabled]="frm.invalid">Salvar</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="mt-5">
+    <div class="container">
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+          <thead class="thead-light text-center">
+            <tr>
+              <th>Código</th>
+
+              <th class="w-50">Nome</th>
+
+              <th class="w-25">E-mail</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let contato of contatos">
+              <td class="text-center w-25">{{contato.id}}</td>
+
+              <td>{{contato.nome}}</td>
+
+              <td>{{contato.email}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</main>
+
